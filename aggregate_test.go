@@ -143,6 +143,7 @@ func ExampleResultTupleJSONReader() {
 	})
 
 	res := ag.GetResult()
+	sort.Sort(ByTuple(res.Tuples))
 	reader := res.TupleJSONReader()
 
 	body, err := ioutil.ReadAll(reader)
@@ -174,6 +175,7 @@ func ExampleResultIndividualJSONReader() {
 	})
 
 	res := ag.GetResult()
+	sort.Sort(ByValue(res.Individual))
 	reader := res.IndividualJSONReader()
 
 	body, err := ioutil.ReadAll(reader)
@@ -182,7 +184,7 @@ func ExampleResultIndividualJSONReader() {
 	}
 	fmt.Printf("%s", body)
 	// Output:
-	//{"value":"www.example.com","which":"Q","count":2,"first":10,"last":20}
 	//{"value":"1.2.3.4","which":"A","count":1,"first":10,"last":10}
 	//{"value":"1.2.3.5","which":"A","count":1,"first":20,"last":20}
+	//{"value":"www.example.com","which":"Q","count":2,"first":10,"last":20}
 }
