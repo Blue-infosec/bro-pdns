@@ -120,6 +120,9 @@ func (d *DNSAggregator) AddRecord(r DNSRecord) {
 			continue
 		}
 		ttl := stripDecimal(r.ttls[idx])
+		if len(ttl) > 0 && ttl[0] == '-' {
+			ttl = "0"
+		}
 		uquery := uniqueTuple{
 			query:  r.query,
 			answer: answer,
